@@ -13,6 +13,8 @@ namespace TournamentManager.Models
         public RoundModel(List<TeamModel> Teams)
         {
             RoundFinished = false;
+            Matches = new List<MatchModel>();
+            this.Teams = Teams;
 
             //Sets LastRound if it's last round
             if (Teams.Count == 2)

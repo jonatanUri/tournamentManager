@@ -1,4 +1,6 @@
-﻿namespace TournamentManager.Models
+﻿using System;
+
+namespace TournamentManager.Models
 {
     public class MatchModel
     {
@@ -35,5 +37,10 @@
             matchState = MatchState.FINISHED;
         }
 
+        public override string ToString()
+        {
+            return String.Format("Team 1 name: {0} score: {1} Team 2 name: {2} score: {3} State: {4} Winner: {5}",
+                team1, team1Score, team2, team2Score, matchState, winner);
+        }
     }
 }
