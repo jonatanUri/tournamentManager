@@ -39,7 +39,7 @@ namespace TournamentManagerTests
         {
             tournament.SetCurrentMatches();
             List<MatchModel> ExpectedMatchup = new List<MatchModel> { new MatchModel(team1, team2) };
-            ExpectedMatchup[0].matchState = MatchState.INPROGRESS;
+            ExpectedMatchup[0].MatchState = MatchState.INPROGRESS;
             Assert.AreEqual(ExpectedMatchup.ToString(), tournament.CurrentMatches.ToString());
         }
 

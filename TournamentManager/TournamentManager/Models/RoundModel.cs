@@ -4,11 +4,14 @@ namespace TournamentManager.Models
 {
     public class RoundModel
     {
+        public int Id { get; set; }
         public RoundModel NextRound { get; set; }
         public List<TeamModel> Teams { get; set; }
         public List<MatchModel> Matches { get; set; }
         public bool RoundFinished { get; set; }
         public bool LastRound { get; set; }
+
+        public RoundModel() { }
 
         public RoundModel(List<TeamModel> Teams)
         {
@@ -37,14 +40,17 @@ namespace TournamentManager.Models
         }
 
         
-        public void CreateNextRound()
+        public RoundModel CreateNextRound()
         {
             List<TeamModel> AdvancingTeams = new List<TeamModel>();
             foreach (MatchModel match in Matches)
             {
-                AdvancingTeams.Add(match.winner);
+                TeamModel clone = new TeamModel();
+                clone.Name = match.winner.Name;
+                AdvancingTeams.Add(clone);
             }
             NextRound = new RoundModel(AdvancingTeams);
+            return NextRound;
         }
         
     }
