@@ -22,7 +22,7 @@ namespace TournamentManager.Models
         public TournamentModel(string Name, List<TeamModel> Teams, int ParalellMatches)
         {
             this.Name = Name;
-            this.Teams = Teams;
+            this.Teams = Teams.OrderBy(a => Guid.NewGuid()).ToList();
             this.ParalellMatches = ParalellMatches;
             CurrentRound = new RoundModel(this.Teams);
         }

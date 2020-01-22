@@ -9,6 +9,9 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <script defer src="~/Scripts/ShroomText.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/ShroomText.css">
     <title>Details</title>
 </head>
 <body>
@@ -21,7 +24,7 @@
     <ul>
         @foreach (var team in Model.Teams)
         {
-            <li>
+            <li class="shroom-text">
                 @team.Name
             </li>
         }
@@ -42,7 +45,7 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            <h3>@match.team1.Name VS @match.team2.Name</h3>
+                            <h3 class="shroom-text"> @match.team1.Name VS @match.team2.Name </h3>
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -69,7 +72,7 @@
                         </div>
                     }
                 </div>
-             }
+            }
         }
 
     </div>
