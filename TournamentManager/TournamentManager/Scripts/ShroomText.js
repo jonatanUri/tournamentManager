@@ -13,22 +13,20 @@ HTMLCollection.prototype.forEach = function (func) {
     }
 }
 HTMLCollection.prototype.findIndex = function (myItem) {
-    var indexer;
+    var indexer = -1;
     this.forEach(function (item, index) {
-        if (myItem == item) {
-            indexer = index;
-            return index
+        if (indexer == -1) {
+            if (myItem == item) {
+                indexer = index;
+            }
         }
     });
-    if (indexer) {
-        return indexer;
-    }
-    return -1;
+    return indexer;
 }
 
-var SPEED = 60; //changes each n ms
-var ITERATIONS = 50; //repeat change n times
-var CHANGE_RATE = 0.7 //percent to change each iteration
+var SPEED = 80; //changes each n ms
+var ITERATIONS = 20; //repeat change n times
+var CHANGE_RATE = 0.8 //percent to change each iteration
 var COUNTER = 0;
 var INFINITE = false;
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz óüöúőűáéŰÁÉÚŐÓÜÖπΣδə𝔰ㄹΞεʒ⌕⥀⍳Γ";
@@ -43,7 +41,7 @@ function RandomizeShroomTexts() {
     shroomTexts.forEach(function (item, index) {
         var newText = "";
         for (var i = 0; i < item.innerText.length; i++) {
-            if (Math.random() > CHANGE_RATE) {
+            if (Math.random() < CHANGE_RATE) {
                 newText += GetSimilarChar(item.innerText[i]);
             } else {
                 newText += originalTexts[index][i];
@@ -58,16 +56,16 @@ function RandomizeShroomTexts() {
     } else {
         COUNTER++;
         if (COUNTER <= ITERATIONS) {
-            /*
+            //-------------------------------------------------------------------------------------
             if (COUNTER / ITERATIONS > Math.random()) {
                 var element = shroomTexts.random();
                 var index = shroomTexts.findIndex(element);
+                SetShroomTextsToOriginal()
                 element.classList.remove("shroom-text");
-                element.innerText = originalTexts[index];
                 shroomTexts = document.getElementsByClassName("shroom-text");
                 shroomTexts.forEach(SetOriginalText);
             }
-            */
+            //-------------------------------------------------------------------------------------
             setTimeout(RandomizeShroomTexts, SPEED);
         }
         else {
@@ -115,8 +113,8 @@ function GetSimilarChar(char) {
         case "P": case "p": case "b": case "B": case "8": case "9": case "6": case "q":
             return "PpBb986".random();
             break;
-        case "-": case "_":
-            return "-_".random();
+        case "-": case "_": case " ":
+            return "-_ ".random();
             break;
         default:
             return CHARS.random();
