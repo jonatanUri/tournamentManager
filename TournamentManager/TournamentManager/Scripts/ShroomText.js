@@ -29,7 +29,7 @@ var ITERATIONS = 40; //repeat change n times
 var CHANGE_RATE = 0.95 //percent to change each iteration
 var COUNTER = 0;
 var INFINITE = false;
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz πΣδə𝔰ㄹΞεʒ⌕⥀⍳Γ";
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
 var shroomTexts = document.getElementsByClassName("shroom-text");
 var originalTexts = new Array(shroomTexts.length);
 
@@ -90,13 +90,13 @@ function Start() {
 function GetSimilarChar(char) {
     switch (char) {
         case "Q": case "O": case "o": case "0": case "ö": case "Ö": case "ó": case "Ó": case "ő": case "Ő": case "D": case "c": case "C":
-            return "0QqOoöÖDcC⎔⌕⥀".random();
+            return "0QqOoöÖDcC".random();
             break;
         case "W": case "w": case "v": case "V": case "A": case "y": case "Y": case "M": case "m": case "n": case "N":
             return "EWwVvAyYMmNn><".random();
             break;
         case "E": case "3": case "e": case "a": case "é":
-            return "E3WXəΞΣεʒ".random();
+            return "E3WXə".random();
         case "S": case "s": case "5": case "2": case "z": case "Z": case "$":
             return "Ss52zZ".random();
             break;
@@ -104,10 +104,10 @@ function GetSimilarChar(char) {
             return "TtFf".random();
             break;
         case "I": case "i": case "j": case "J": case "1": case "7": case "Í": case "í":
-            return "IiJj17Íí⍳".random();
+            return "IiJj17Íí".random();
             break;
         case "H": case "h": case "K": case "k": case "X": case "x": case "R":
-            return "HhKkkXxRπ".random();
+            return "HhKkkXxR".random();
             break;
         case "P": case "p": case "b": case "B": case "8": case "9": case "6": case "q":
             return "PpBb986".random();

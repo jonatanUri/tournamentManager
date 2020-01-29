@@ -33,7 +33,10 @@
 }
 
 .match-card {
-    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    background-image: linear-gradient(
+        120deg, 
+        #a1c4fd 0%, 
+        #c2e9fb 100%);
     width: 380px;
     padding: 10px;
     margin: auto;
@@ -41,7 +44,15 @@
     border-radius: 6px 6px 6px 6px;
     text-align: center;
     box-shadow: 5px 3px 20px -10px rgba(0,0,0,1);
+    transition: background-image 0.075s linear;
+    transition: box-shadow 0.075s linear;
 }
+
+.match-card:hover {
+    background-image: linear-gradient(120deg, #c2e9fb 0%, a1c4fd 100%);
+    box-shadow: 5px 3px 30px -10px rgba(0,0,0,1);
+}
+
 .match-card-title {
     margin: auto;
 }
