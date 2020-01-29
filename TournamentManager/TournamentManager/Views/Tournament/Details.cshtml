@@ -9,54 +9,71 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
+    <script defer src="~/Scripts/ShroomText.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/ShroomText.css" />
+    <link rel="stylesheet" href="~/Content/DetailsStlye.css" />
+    <title>@Model.Name</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Back", "Index")
-    </p>
-    <h1>@Model.Name</h1>
+    <div class="page-header">
+        <div class="name-holder">
+            <h1 class="shroom-text">@Model.Name</h1>
+        </div>
+        <p>
+            @Html.ActionLink("Back", "Index")
+        </p>
+    </div>
     <h2>Paralell matches: @Model.ParalellMatches</h2>
     <h2>Teams:</h2>
     <ul>
         @foreach (var team in Model.Teams)
         {
-            <li>
-                @team.Name
-            </li>
+            if (Model.IsTeamAdvancing(team))
+            {
+                <li class="shroom-text advanced-team">
+                    @team.Name
+                </li>
+            }
+            else
+            {
+                <li class="shroom-text distanced-team">
+                    @team.Name
+                </li>
+            }
         }
     </ul>
     <div>
         @if (Model.CurrentRound.LastRound && Model.CurrentRound.Matches.First().winner != null)
         {
-            <h1>@Model.CurrentRound.Matches.First().winner.Name won the tournament!</h1>
+            <h1 class="advanced-team">@Model.CurrentRound.Matches.First().winner.Name won the tournament!</h1>
         }
         else
         {
             <h2>Matches: </h2>
             foreach (TournamentManager.Models.MatchModel match in Model.CurrentMatches)
             {
-                <div>
+                <div class="match-card">
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            <h3>@match.team1.Name VS @match.team2.Name</h3>
+                            <h3 class="shroom-text match-card-title"> @match.team1.Name VS @match.team2.Name </h3>
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                             <div class="form-group">
                                 @match.team1.Name score:
                                 <div class="col-md-10">
-                                    <input class="form-control text-box single-line valid" data-val="true" data-val-required="A következő mező megadása kötelező: Team 1 Score." name="Team1Score" aria-describedby="Team1Score-error" aria-invalid="false">
+                                    <input class="form-control text-box single-line valid" data-val="true" data-val-required="A következő mező megadása kötelező: Team 1 Score." name="Team1Score" aria-describedby="Team1Score-error" aria-invalid="false" autocomplete="off">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @match.team2.Name score:
                                 <div class="col-md-10">
-                                    <input class="form-control text-box single-line valid" data-val="true" data-val-required="A következő mező megadása kötelező: Team 2 Score." name="Team2Score" aria-describedby="Team2Score-error" aria-invalid="false">
+                                    <input class="form-control text-box single-line valid" data-val="true" data-val-required="A következő mező megadása kötelező: Team 2 Score." name="Team2Score" aria-describedby="Team2Score-error" aria-invalid="false" autocomplete="off">
                                 </div>
                             </div>
 
@@ -69,9 +86,13 @@
                         </div>
                     }
                 </div>
-             }
+            }
         }
 
+    </div>
+
+    <div class="footer">
+        <strong>Tournament manager</strong> by Jonatán Uri, @DateTime.Now.Year
     </div>
 </body>
 </html>

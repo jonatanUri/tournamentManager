@@ -9,38 +9,54 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>View</title>
+    <script defer src="~/Scripts/ShroomText.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/ShroomText.css" />
+    <link rel="stylesheet" href="~/Content/DetailsStlye.css" />
+    <title>Tournament manager</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <div class="page-header">
+        <div class="name-holder">
+            <h1 class="shroom-text">Tournament manager</h1>
+        </div>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    </div>
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                <h3>Name</h3>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Teams.Count)
+                <h3>Size</h3>
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Teams.Count)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.CurrentRound.LastRound && item.CurrentRound.Matches[0].MatchState == TournamentManager.Models.MatchState.FINISHED)
+                    {
+                        @Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { @class = "finished-tournament" })
+                    } else {
+                        @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+                    }
+                </td>
+                <td>
+                    | @Html.DisplayFor(modelItem => item.Teams.Count) |
+                </td>
+                <td class="delete-button">
+                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
     </table>
+    <div class="footer">
+        <strong>Tournament manager</strong> by Jonatán Uri, @DateTime.Now.Year
+    </div>
 </body>
 </html>

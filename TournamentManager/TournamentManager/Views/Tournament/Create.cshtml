@@ -10,60 +10,72 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <script defer src="~/Scripts/TeamFieldsSetter.js"></script>
+    <script defer src="~/Scripts/CreateHeaderSetter.js"></script>
+    <script defer src="~/Scripts/ShroomText.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/ShroomText.css" />
+    <link rel="stylesheet" href="~/Content/DetailsStlye.css" />
     <title>Create</title>
 </head>
-<body>
+<body style="text-align: center">
+    <div class="page-header">
+        <div class="name-holder">
+            <h1 id="header-text" class="shroom-text">New tournament</h1>
+        </div>
+        <p>
+            @Html.ActionLink("Back", "Index")
+        </p>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
-    
-    
-    @using (Html.BeginForm()) 
+
+
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        
-    <div class="form-horizontal">
-        <h4>TournamentModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ParalellMatches, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ParalellMatches, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ParalellMatches, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TeamSize, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TeamSize, new { htmlAttributes = new { @class = "form-control", @value = "2"} })
-                @Html.ValidationMessageFor(model => model.TeamSize, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ParalellMatches, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ParalellMatches, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ParalellMatches, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2" for="TeamSize">Team names</label>
-            <div name="TeamNamesBox" class="col-md-10">
-                <br>
+            <div class="form-group">
+                @Html.LabelFor(model => model.TeamSize, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TeamSize, new { htmlAttributes = new { @class = "form-control", @value = "2" } })
+                    @Html.ValidationMessageFor(model => model.TeamSize, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                <label class="control-label col-md-2" for="TeamSize">Team names</label>
+                <div name="TeamNamesBox" class="col-md-10">
+                    <br>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
         </div>
-    </div>
     }
-    
+
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>

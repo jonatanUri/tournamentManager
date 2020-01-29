@@ -18,9 +18,10 @@ namespace TournamentManager.Controllers
         public ActionResult Index()
         {
             var tournaments = tournamentContext.tournaments
-                .Include("Teams")
-                .Include("CurrentMatches")
-                .Include("CurrentRound").ToList();
+                .Include(t => t.Teams)
+                .Include(t => t.CurrentMatches)
+                .Include(t => t.CurrentRound)
+                .Include(t => t.CurrentRound.Matches).ToList();
             return View(tournaments);
         }
 

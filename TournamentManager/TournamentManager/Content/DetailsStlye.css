@@ -1,0 +1,116 @@
+﻿body {
+    margin-top: 0px;
+    margin: 0;
+    padding: 0;
+    line-height: 150%;
+    text-shadow: 0 2px 2px #80808080;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-size: 100vw 100vh;
+}
+
+.page-header {
+    border-radius: 10px 10px 10px 10px;
+    margin: auto;
+    background-color: deepskyblue;
+    left: -8px;
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    box-shadow: 5px 3px 20px -10px rgba(0,0,0,1);
+    width: 60%;
+    padding-top: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    margin-top: 15px;
+}
+
+.page-header p{
+    margin: auto;
+}
+
+.page-header h1 {
+    text-align: center;
+    margin: auto;
+    padding-top: inherit;
+}
+
+.match-card {
+    background-image: linear-gradient(
+        120deg, 
+        #a1c4fd 0%, 
+        #c2e9fb 100%);
+    width: 380px;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 6px 6px 6px 6px;
+    text-align: center;
+    box-shadow: 5px 3px 20px -10px rgba(0,0,0,1);
+    transition: background-image 0.075s linear;
+    transition: box-shadow 0.075s linear;
+}
+
+.match-card:hover {
+    background-image: linear-gradient(120deg, #c2e9fb 0%, a1c4fd 100%);
+    box-shadow: 5px 3px 30px -10px rgba(0,0,0,1);
+}
+
+.match-card-title {
+    margin: auto;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+}
+
+a {
+    transition-duration: 0.075s;
+}
+
+a:hover{
+    color:green;
+}
+    
+a:active{
+    color: darkcyan;
+}
+
+a:not(.finished-tournament), a:visited:not(.finished-tournament) {
+    color: inherit;
+    font-size: larger;
+}
+
+.finished-tournament {
+    color: darkseagreen;
+}
+
+table{
+    margin: auto;
+}
+
+hr{
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+.delete-button {
+    transition-duration: 0.075s;
+}
+
+.delete-button:hover{
+    color:red;
+}
+
+.distanced-team {
+    color: maroon;
+}
+
+.advanced-team {
+    color: darkgreen;
+}

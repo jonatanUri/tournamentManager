@@ -10,7 +10,7 @@ namespace TournamentManager.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Tournament");
         }
 
         public ActionResult About()

@@ -1,0 +1,8 @@
+﻿body {
+    font-family: 'Overpass Mono', monospace;
+}
+
+.shroom-text{
+    transition-duration: 0.2s;
+    position:static;
+}

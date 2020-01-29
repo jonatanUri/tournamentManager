@@ -16,6 +16,15 @@
             return Name;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (this.ToString() == obj.ToString())
+            {
+                return true;
+            }
+            return false;
+        }
+
         public TeamModel() { }
     }
 }

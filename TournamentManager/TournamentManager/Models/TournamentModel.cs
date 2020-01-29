@@ -22,7 +22,7 @@ namespace TournamentManager.Models
         public TournamentModel(string Name, List<TeamModel> Teams, int ParalellMatches)
         {
             this.Name = Name;
-            this.Teams = Teams;
+            this.Teams = Teams.OrderBy(a => Guid.NewGuid()).ToList();
             this.ParalellMatches = ParalellMatches;
             CurrentRound = new RoundModel(this.Teams);
         }
@@ -71,5 +71,37 @@ namespace TournamentManager.Models
             CurrentMatches = NextMatches;
         }
         
+        public bool IsTeamAdvancing(TeamModel team)
+        {
+            if (!CurrentRound.Teams.Contains(team))
+            {
+                return false;
+            }
+            else
+            {
+                MatchModel match = FindContaningMatch(team);
+                if (match.MatchState == MatchState.FINISHED)
+                {
+                    if (!match.winner.Equals(team))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private MatchModel FindContaningMatch(TeamModel team)
+        {
+            foreach (MatchModel match in CurrentRound.Matches)
+            {
+                if (match.team1.Equals(team) || match.team2.Equals(team))
+                {
+                    return match;
+                }
+            }
+            throw new Exception(String.Format("Couldn't find a match in current round that contains {0} team", team.Name));
+        }
     }
 }
