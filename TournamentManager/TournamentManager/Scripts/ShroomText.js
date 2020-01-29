@@ -24,12 +24,12 @@ HTMLCollection.prototype.findIndex = function (myItem) {
     return indexer;
 }
 
-var SPEED = 80; //changes each n ms
-var ITERATIONS = 20; //repeat change n times
-var CHANGE_RATE = 0.8 //percent to change each iteration
+var SPEED = 40; //changes each n ms
+var ITERATIONS = 100; //repeat change n times
+var CHANGE_RATE = 0.95 //percent to change each iteration
 var COUNTER = 0;
 var INFINITE = false;
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz óüöúőűáéŰÁÉÚŐÓÜÖπΣδə𝔰ㄹΞεʒ⌕⥀⍳Γ";
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz πΣδə𝔰ㄹΞεʒ⌕⥀⍳Γ";
 var shroomTexts = document.getElementsByClassName("shroom-text");
 var originalTexts = new Array(shroomTexts.length);
 
@@ -59,7 +59,6 @@ function RandomizeShroomTexts() {
             //-------------------------------------------------------------------------------------
             if (COUNTER / ITERATIONS > Math.random()) {
                 var element = shroomTexts.random();
-                var index = shroomTexts.findIndex(element);
                 SetShroomTextsToOriginal()
                 element.classList.remove("shroom-text");
                 shroomTexts = document.getElementsByClassName("shroom-text");
@@ -91,7 +90,7 @@ function Start() {
 function GetSimilarChar(char) {
     switch (char) {
         case "Q": case "O": case "o": case "0": case "ö": case "Ö": case "ó": case "Ó": case "ő": case "Ő": case "D": case "c": case "C":
-            return "0QqOoöÖóÓőŐDcC⎔⌕⥀".random();
+            return "0QqOoöÖDcC⎔⌕⥀".random();
             break;
         case "W": case "w": case "v": case "V": case "A": case "y": case "Y": case "M": case "m": case "n": case "N":
             return "EWwVvAyYMmNn><".random();

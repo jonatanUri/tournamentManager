@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/ShroomText.css" />
     <link rel="stylesheet" href="~/Content/DetailsStlye.css" />
-    <title>Details</title>
+    <title>@Model.Name</title>
 </head>
 <body>
     <div class="page-header">
@@ -80,6 +80,10 @@
             }
         }
 
+    </div>
+
+    <div class="footer">
+        <strong>Tournament manager</strong> by Jonatán Uri, @DateTime.Now.Year
     </div>
 </body>
 </html>
