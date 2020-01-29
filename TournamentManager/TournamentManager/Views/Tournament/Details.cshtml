@@ -29,15 +29,24 @@
     <ul>
         @foreach (var team in Model.Teams)
         {
-            <li class="shroom-text">
-                @team.Name
-            </li>
+            if (Model.IsTeamAdvancing(team))
+            {
+                <li class="shroom-text advanced-team">
+                    @team.Name
+                </li>
+            }
+            else
+            {
+                <li class="shroom-text distanced-team">
+                    @team.Name
+                </li>
+            }
         }
     </ul>
     <div>
         @if (Model.CurrentRound.LastRound && Model.CurrentRound.Matches.First().winner != null)
         {
-            <h1>@Model.CurrentRound.Matches.First().winner.Name won the tournament!</h1>
+            <h1 class="advanced-team">@Model.CurrentRound.Matches.First().winner.Name won the tournament!</h1>
         }
         else
         {

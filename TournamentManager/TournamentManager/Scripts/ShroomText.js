@@ -24,8 +24,8 @@ HTMLCollection.prototype.findIndex = function (myItem) {
     return indexer;
 }
 
-var SPEED = 40; //changes each n ms
-var ITERATIONS = 100; //repeat change n times
+var SPEED = 50; //changes each n ms
+var ITERATIONS = 40; //repeat change n times
 var CHANGE_RATE = 0.95 //percent to change each iteration
 var COUNTER = 0;
 var INFINITE = false;
