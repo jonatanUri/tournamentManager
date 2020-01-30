@@ -32,6 +32,7 @@ namespace TournamentManagerTests
             teams.Add(team3);
             teams.Add(team4);
             tournament = new TournamentModel("TestTournament", teams, 1);
+            tournament.CurrentMatches = new List<MatchModel>();
         }
 
         [Test]
@@ -43,5 +44,38 @@ namespace TournamentManagerTests
             Assert.AreEqual(ExpectedMatchup.ToString(), tournament.CurrentMatches.ToString());
         }
 
+        [Test]
+        public void FindContainingMatch_ShouldReturnMatchThatContainsTeam3()
+        {
+            MatchModel match = tournament.FindContaningMatch(team3);
+            Assert.IsTrue(match.team1.Equals(team3) || match.team2.Equals(team3));
+        }
+
+        [Test]
+        public void FindContainingMatch_ShouldThrowExceptionForTeam5()
+        {
+            TeamModel team5 = new TeamModel("Team5");
+            Assert.Throws<Exception>(() => tournament.FindContaningMatch(team5));
+        }
+
+        [Test]
+        public void IsTeamAdvancing_ShouldReturnTrue_ForTeam1()
+        {
+            MatchModel testMatch = new MatchModel(team1, team2);
+            testMatch.winner = team1;
+            testMatch.MatchState = MatchState.FINISHED;
+            tournament.CurrentMatches.Add(testMatch);
+            Assert.IsTrue(tournament.IsTeamAdvancing(team1));
+        }
+
+        [Test]
+        public void IsTeamAdvancing_ShouldReturnFalse_ForTeam2()
+        {
+            MatchModel testMatch = tournament.FindContaningMatch(team2);
+            testMatch.winner = team1;
+            testMatch.MatchState = MatchState.FINISHED;
+            tournament.CurrentMatches.Add(testMatch);
+            Assert.IsFalse(tournament.IsTeamAdvancing(team2));
+        }
     }
 }

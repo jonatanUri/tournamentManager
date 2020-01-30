@@ -92,7 +92,7 @@ namespace TournamentManager.Models
             return true;
         }
 
-        private MatchModel FindContaningMatch(TeamModel team)
+        public MatchModel FindContaningMatch(TeamModel team)
         {
             foreach (MatchModel match in CurrentRound.Matches)
             {
