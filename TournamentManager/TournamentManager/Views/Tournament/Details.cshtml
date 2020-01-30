@@ -48,8 +48,8 @@
     <table>
         <thead>
             <tr>
-                <th class="advancing-teams"><h3>Advancing teams</h3></thclass="advancing-teams">
-                <th class="defeated-teams"><h3>Defeated teams</h3></th>
+                <th class="shroom-text advancing-teams"><h3>Advancing teams</h3></thclass="advancing-teams">
+                <th class="shroom-text defeated-teams"><h3>Defeated teams</h3></th>
             </tr>
         </thead>
         <tbody>
@@ -70,7 +70,7 @@
                         @{
                             if (i < advancingTeams.Count)
                             {
-                                <td class="advancing-teams">@advancingTeams[i]</td>
+                                <td class="shroom-text advancing-teams">@advancingTeams[i]</td>
                             }
                             else
                             {
@@ -78,7 +78,7 @@
                             }
                             if (i < defeatedTeams.Count)
                             {
-                                <td class="defeated-teams">@defeatedTeams[i]</td>
+                                <td class="shroom-text defeated-teams">@defeatedTeams[i]</td>
                             }
                             else
                             {
