@@ -38,8 +38,7 @@ namespace TournamentManagerTests
                 match.winner = match.team1;
                 WinnerTeams.Add(match.team1);
             }
-            round.CreateNextRound();
-            Assert.AreEqual(WinnerTeams, round.NextRound.Teams);
+            Assert.AreEqual(WinnerTeams, round.CreateNextRound().Teams);
         }
     }
 }

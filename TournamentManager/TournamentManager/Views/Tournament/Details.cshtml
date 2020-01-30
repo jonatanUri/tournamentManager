@@ -1,4 +1,5 @@
 ﻿@model TournamentManager.Models.TournamentModel
+@using TournamentManager.Models
 
 @{
     Layout = null;
@@ -24,25 +25,73 @@
             @Html.ActionLink("Back", "Index")
         </p>
     </div>
+    <hr />
     <h2>Paralell matches: @Model.ParalellMatches</h2>
-    <h2>Teams:</h2>
-    <ul>
-        @foreach (var team in Model.Teams)
+    <hr />
+    @{
+        List<TeamModel> advancingTeams = new List<TeamModel>();
+        List<TeamModel> defeatedTeams = new List<TeamModel>();
+
+        foreach (var team in Model.Teams)
         {
             if (Model.IsTeamAdvancing(team))
             {
-                <li class="shroom-text advanced-team">
-                    @team.Name
-                </li>
+                advancingTeams.Add(team);
             }
             else
             {
-                <li class="shroom-text distanced-team">
-                    @team.Name
-                </li>
+                defeatedTeams.Add(team);
             }
         }
-    </ul>
+    }
+    <h2>Teams:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="shroom-text advancing-teams"><h3>Advancing teams</h3></thclass="advancing-teams">
+                <th class="shroom-text defeated-teams"><h3>Defeated teams</h3></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int length;
+                if (advancingTeams.Count >= defeatedTeams.Count)
+                {
+                    length = advancingTeams.Count;
+                }
+                else
+                {
+                    length = defeatedTeams.Count;
+                }
+
+                for (int i = 0; i < length; i++)
+                {
+                    <tr>
+                        @{
+                            if (i < advancingTeams.Count)
+                            {
+                                <td class="shroom-text advancing-teams">@advancingTeams[i]</td>
+                            }
+                            else
+                            {
+                                <td> </td>
+                            }
+                            if (i < defeatedTeams.Count)
+                            {
+                                <td class="shroom-text defeated-teams">@defeatedTeams[i]</td>
+                            }
+                            else
+                            {
+                                <td> </td>
+                            }
+                        }
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+    <hr />
     <div>
         @if (Model.CurrentRound.LastRound && Model.CurrentRound.Matches.First().winner != null)
         {
