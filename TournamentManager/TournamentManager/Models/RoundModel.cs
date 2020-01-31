@@ -49,8 +49,7 @@ namespace TournamentManager.Models
                 clone.Name = match.winner.Name;
                 AdvancingTeams.Add(clone);
             }
-            NextRound = new RoundModel(AdvancingTeams);
-            return NextRound;
+            return new RoundModel(AdvancingTeams);
         }
         
     }

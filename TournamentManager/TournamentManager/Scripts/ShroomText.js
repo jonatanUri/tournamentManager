@@ -60,7 +60,7 @@ function RandomizeShroomTexts() {
             if (COUNTER / ITERATIONS > Math.random()) {
                 var element = shroomTexts.random();
                 SetShroomTextsToOriginal()
-                element.classList.remove("shroom-text");
+                if (element) element.classList.remove("shroom-text");
                 shroomTexts = document.getElementsByClassName("shroom-text");
                 shroomTexts.forEach(SetOriginalText);
             }
